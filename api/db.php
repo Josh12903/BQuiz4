@@ -3,59 +3,123 @@
 session_start();
 
 Class DB{
-    $dsn="mysql:host=localhost;dbname=db04;charset:ubf8";
-    $pdo=new PDO($dsn,'root','');
-    $table->this;
+    protected $dsn="mysql:host=localhost;dbname=db04;charset:utf8";
+    protected $pdo;
+    protected $table;
 
 
-    function __construct()
+    function __construct($table){
+        $this->table=$table;
+        $this->pdo=new PDO($this->dsn,'root','');
+    }
 
     
 
-    function all(){
-        $sql=" SELECT * FROM ";
+    function all(...$arg){
+        $sql=" SELECT * FROM $this->table ";
+            if(isset($arg[0])){
+                if(is_array($arg[0])){
+                    $where=$this->array2sql($arg[0]);
+                    $sql .= " WHERE ".join(" AND ",$where);
+                }else{
+                    $sql .=$arg[0];
+                }
+            }
 
-        return $this->table;
+            if(isset($arg[1])){
+                $sql .= $arg[1];
+            }
+
+        return $this->pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
-    function save(){
-        $sql=" SELECT * FROM ";
+    function save($array){
+        if(isset($array['id'])){
+            $set=$this->array2sql($array);
+            $sql="UPDATE $this->table SET ".join(",",$set). " WHERE `id`='{$array['id']}'";
+        }else{
+            $cols=array_keys($array);
+            $sql="INSERT INTO $this->table (`".join("`,`",$cols)."`) VALUES('".join("','",$array)."')";
+        }
 
-        return $this->table;
+        
+
+        return $this->pdo->exec($sql);
     }
-    function find(){
-        $sql=" SELECT * FROM ";
+    function find($id){
+        $sql=" SELECT * FROM $this->table ";
 
-        return $this->table;
+        if(is_array($id)){
+            $where=$this->array2sql($id);
+            $sql .= "WHERE ".join(" AND ",$where);
+        }else{
+            $sql .= " WHERE `id`='{id}'";
+        }
+
+        return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
     function del(){
-        $sql=" SELECT * FROM ";
+        $sql=" DELETE FROM $this->table ";
 
-        return $this->table;
+        if(is_array($id)){
+            $where=$this->array2sql($id);
+            $sql .= " WHERE ".join(" AND ",$where);
+        }else{
+            $sql .= " WHERE `id`={$id};";
+        }
+        return $this->pdo->exec($sql);
     }
-    function count(){
-        $sql=" SELECT * FROM ";
+    function count(...$arg){
+        $sql=" SELECT count(*) FROM $this->table";
+            if(isset($arg[0])){
+                if(is_array($arg[0])){
+                    $where=$this->array2sql($arg[0]);
+                    $sql .= " WHERE ".join(" AND ",$where);
+                }else{
+                    $sql .=$arg[0];
+                }
+            }
 
-        return $this->table;
+            if(isset($arg[1])){
+                $sql .=$arg[1];
+            }
+
+        return $this->pdo->query($sql)->fetchColumn();
     }
-    function sum(){
-        $sql=" SELECT * FROM ";
+    function sum($col,...$arg){
+        $sql=" SELECT sum(`$col`) FROM $this->table ";
+            if(isset($arg[0])){
+                if(is_array($arg[0])){
+                    $where=$this->array2sql($arg[0]);
+                    $sql .= " WHERE ".join(" AND ",$where);
+                }else{
+                    $sql .=$arg[0];
+                }
+            }
 
-        return $this->table;
+            if(isset($arg[1])){
+                $sql .=$arg[1];
+            }
+
+        return $this->pdo->quer($sql)->fetchColumn();
     }
-    function (){
-        $sql=" SELECT * FROM ";
-
-        return $this->table;
+    private function array2sql($array){
+        $tmp=[];
+            foreach($array as $key => $value){
+                $tmp[]="`$key`='$value'";
+            }
+        return $tmp;
     }
 
 }
 
-function dd(){
-    
+function dd($array){
+    echo "<pre>";
+    print_r($array);
+    echo "</pre>";
 }
 
 function q(){
-    $dsn="mysql:host=localhost;dbname=db04;charset:ubf8";
+    $dsn="mysql:host=localhost;dbname=db04;charset:utf8";
     $pdo=new PDO($dsn,'root','');
-    $table->this;
+    return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }

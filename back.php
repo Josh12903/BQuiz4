@@ -28,7 +28,16 @@
                     </div>
                     </div>
         <div id="right">
-        	        </div>
+			<?php
+                $do=$_GET['do']??'main';
+                $file="back/".$do.".php";
+                    if(file_exists($file)){
+                        include $file;
+                    }else{
+                        include "back/main.php";
+                    }
+            ?>
+        </div>
         <div id="bottom" style="line-height:70px; color:#FFF; background:url(icon/bot.png);" class="ct">
         	頁尾版權 :        </div>
     </div>
