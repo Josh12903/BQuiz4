@@ -9,7 +9,7 @@
         </tr>
     </table>
     <div class="ct">
-        <input type="hidden" name="id" value="<?=$Bot->find(1)['bot'];?>">
+        <input type="hidden" name="id" value="<?=$Bot->find(1)['id'];?>">
         <input type="submit" value="編輯">
         <input type="reset" value="重置">
     </div>

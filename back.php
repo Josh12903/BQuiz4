@@ -30,7 +30,7 @@
                     </div>
         <div id="right">
 			<?php
-                $do=$_GET['do']??'admin';
+                $do=$_GET['do']??'back';
                 $file="back/".$do.".php";
                     if(file_exists($file)){
                         include $file;
