@@ -15,7 +15,7 @@
     <tr>
         <td class="tt ct">密碼</td>
         <td class="pp">
-            <input type="text" name="pw" id="pw">
+            <input type="password" name="pw" id="pw">
     </td>
     </tr>
     <tr>
@@ -45,13 +45,33 @@
 
 <script>
     function chkAcc(){
-        let acc=$("#acc")
-        $.get("api/chk_acc.php",{acc},{res}=>{
+        let acc=$("#acc").val()
+        $.get("api/chk_acc.php",{acc},(res)=>{
             if(parseInt(res) || acc=='admin'){
                 alert("此帳號已存在,請重設其他帳號")
+                $("acc").val("");
             }else{
                 alert("此帳號可使用")
+                }
+            })
+        }
+        
+    function regs(){
+        let data={acc:$("#acc").val(),
+                  pw:$("#pw").val(),
+                  name:$("#name").val(),
+                  tel:$("#tel").val(),
+                  address:$("#address").val(),
+                  email:$("#email").val()
+        }
 
+        $.get("api/chk_acc.php",{acc:data.acc},(res)=>{
+            if(parseInt(res) || data.acc=='admin'){
+                alert("此帳號已存在,請重設其他帳號")
+            }else{
+                $.post("api/regs.php",data,()=>{
+                    location.href='index.php?do=login';
+                })
             }
         })
     }
