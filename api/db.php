@@ -123,3 +123,9 @@ function q(){
     $pdo=new PDO($dsn,'root','');
     return $pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function to($url){
+    header("location:".$url);
+}
+
+$Bot=new DB('bot');
