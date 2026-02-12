@@ -1,3 +1,4 @@
+
 <h2 class="ct">會員註冊</h2>
 <table class="all">
     <tr>
@@ -39,17 +40,16 @@
 </table>
 
 <div class="ct">
-    <input type="submit" value="註冊">
+    <input type="button" value="註冊" onclick="regs()">
     <input type="reset" value="重置">
 </div>
-
 <script>
     function chkAcc(){
         let acc=$("#acc").val()
         $.get("api/chk_acc.php",{acc},(res)=>{
             if(parseInt(res) || acc=='admin'){
                 alert("此帳號已存在,請重設其他帳號")
-                $("acc").val("");
+                
             }else{
                 alert("此帳號可使用")
                 }
@@ -68,6 +68,7 @@
         $.get("api/chk_acc.php",{acc:data.acc},(res)=>{
             if(parseInt(res) || data.acc=='admin'){
                 alert("此帳號已存在,請重設其他帳號")
+                $("#acc").val("")
             }else{
                 $.post("api/regs.php",data,()=>{
                     location.href='index.php?do=login';
