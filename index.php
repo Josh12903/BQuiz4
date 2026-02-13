@@ -16,7 +16,7 @@
         <a href="?">
             	<img src="./icon/0416.jpg" style="width:55%">
         </a>
-                <div style="padding:10px;">
+                <div style="padding:10px;display:inline-block">
                 <a href="?">回首頁</a> |
                 <a href="?do=news">最新消息</a> |
                 <a href="?do=look">購物流程</a> |
