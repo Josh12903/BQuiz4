@@ -10,7 +10,7 @@
     <tr>
         <td class="tt ct">密碼</td>
         <td class="pp">
-            <input type="text" name="pw" id="pw">
+            <input type="password" name="pw" id="pw">
     </td>
     </tr>
     <tr>
@@ -35,7 +35,7 @@
         let ans=$("#chknum").val()
         $.get("api/chk_num.php",{ans},(res)=>{
             if(parseInt(res)){
-                $.get("api/chk__admin_pw.php",{acc:$("#acc").val(),pw:("#pw").val()},(chk)=>{
+                $.get("api/chk_admin_pw.php",{acc:$("#acc").val(),pw:$("#pw").val()},(chk)=>{
                     if(parseInt(chk)){
                         location.href='back.php'
                     }else{

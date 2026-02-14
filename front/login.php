@@ -16,7 +16,7 @@
     <tr>
         <td class="tt ct">密碼</td>
         <td class="pp">
-            <input type="text" name="pw" id="pw">
+            <input type="password" name="pw" id="pw">
         </td>
     </tr>
     <tr>
@@ -33,7 +33,7 @@
     </tr>
 </table>
 <div class="ct">
-    <input type="submit" value="確認" onclick="login()">
+    <input type="button" value="確認" onclick="login()">
 </div>
 
 <script>
@@ -41,9 +41,9 @@
         let ans=$("#chknum").val()
         $.get("api/chk_num.php",{ans},(res)=>{
             if(parseInt(res)){
-                $.get("api/chk_pw.php",{acc:$("#acc").val(),pw:("#pw").val()},(chk)=>{
+                $.get("api/chk_pw.php",{acc:$("#acc").val(),pw:$("#pw").val()},(chk)=>{
                     if(parseInt(chk)){
-                        location.href='index.php'
+                        location.href='index.php';
                     }else{
                         alert("帳號或密碼錯誤")
                         location.reload();
