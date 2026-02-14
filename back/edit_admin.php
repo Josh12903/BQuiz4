@@ -17,23 +17,23 @@ $row_pr=unserialize($row['pr']);
         <td class="tt ct">權限</td>
         <td class="pp">
         <div>
-            <input type="checkbox" name="pr[]" value="1" <?=(in_array(1,$row_pr)?"checked":"");?>>
+            <input type="checkbox" name='pr[]' value="1" <?=(in_array(1,$row_pr)?"checked":"");?>>
             商品分類與管理
         </div>
         <div>
-            <input type="checkbox" name="pr[]" value="2" <?=(in_array(2,$row_pr)?"checked":"");?>>
+            <input type="checkbox" name='pr[]' value="2" <?=(in_array(2,$row_pr)?"checked":"");?>>
             訂單管理
         </div>
         <div>
-            <input type="checkbox" name="pr[]" value="3" <?=(in_array(3,$row_pr)?"checked":"");?>>
+            <input type="checkbox" name='pr[]' value="3" <?=(in_array(3,$row_pr)?"checked":"");?>>
             會員管理
         </div>
         <div>
-            <input type="checkbox" name="pr[]" value="4" <?=(in_array(4,$row_pr)?"checked":"");?>>
+            <input type="checkbox" name='pr[]' value="4" <?=(in_array(4,$row_pr)?"checked":"");?>>
             頁尾版權管理
         </div>
         <div>
-            <input type="checkbox" name="pr[]" value="5" <?=(in_array(5,$row_pr)?"checked":"");?>>
+            <input type="checkbox" name='pr[]' value="5" <?=(in_array(5,$row_pr)?"checked":"");?>>
             最新消息管理
         </div>
         </td>
@@ -41,7 +41,7 @@ $row_pr=unserialize($row['pr']);
 </table>
 <div class="ct">
     <input type="hidden" name="id" value="<?=$row['id'];?>">
-    <input type="submit" value="新增">
+    <input type="submit" value="修改">
     <input type="reset" value="重置">
 </div>
 </form>

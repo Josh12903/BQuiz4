@@ -57,14 +57,14 @@ Class DB{
 
         return $this->pdo->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
-    function del(){
+    function del($id){
         $sql=" DELETE FROM $this->table ";
 
         if(is_array($id)){
             $where=$this->array2sql($id);
             $sql .= " WHERE ".join(" AND ",$where);
         }else{
-            $sql .= " WHERE `id`={$id};";
+            $sql .= " WHERE `id`='{$id}'";
         }
         return $this->pdo->exec($sql);
     }
