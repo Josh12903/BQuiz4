@@ -1,0 +1,10 @@
+<?php include_once "db.php";
+
+// $_POST['acc'];
+// $_POST['pw'];
+// $_POST['pr'];
+
+$_POST['pr']=serialize($_POST['pr']);
+$Admin->save($_POST);
+
+to("../back.php?do=admin");
