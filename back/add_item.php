@@ -5,14 +5,12 @@
         <td class="tt ct">所屬大分類</td>
         <td class="pp">
             <select name="big" id="big"></select>
-            <input type="text" name="big" id="big">
     </td>
     </tr>
     <tr>
         <td class="tt ct">所屬中分類</td>
         <td class="pp">
             <select name="mid" id="mid"></select>
-            <input type="text" name="mid" id="mid">
     </td>
     </tr>
     <tr>
@@ -63,6 +61,30 @@
 <div class="ct">
     <input type="submit" value="新增">
     <input type="reset" value="重置">
-    <input type="button" value="返回">
+    <input type="button" value="返回" onclick="location.hrerf='?do=th'">
 </div>
 </form>
+<script>
+getTypes('big')
+
+        $("#big").on('change',function(){
+            getTypes('mid')
+        })
+
+    function getTypes(type){
+        switch(type){
+            case "big":
+                $.get("api/get_bigs.php",(bigs)=>{
+                    $("#big").html(bigs)
+                    getTypes('mid')
+                })
+            break;
+            case "mid":
+                let big_id=$("#big").val()
+                $.get("api/get_mids.php",{big_id},(mids)=>{
+                    $("#mid").html(mids)
+                })
+            break;
+        }
+    }
+</script>
