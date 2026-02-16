@@ -131,3 +131,4 @@ function to($url){
 $Bot=new DB('bot');
 $Mem=new DB('members');
 $Admin=new DB('admin');
+$Type=new DB('types');
