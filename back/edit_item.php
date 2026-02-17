@@ -1,4 +1,4 @@
-<h2 class="ct">新增商品</h2>
+<h2 class="ct">修改商品</h2>
 <form action="api/save_items.php" method="post" enctype="multipart/form-data">
 <table class="all">
     <tr>
@@ -59,7 +59,8 @@
 </table>
 
 <div class="ct">
-    <input type="submit" value="新增">
+    <input type="hidden" name="id" value="<?=$_GET['id'];?>"> 
+    <input type="submit" value="修改">
     <input type="reset" value="重置">
     <input type="button" value="返回" onclick="location.href='?do=th'">
 </div>
