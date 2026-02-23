@@ -2,7 +2,7 @@
     //工程 ； 實際
     // $_SESSION['buycart'][]=[$_GET['stock'],$_GET['id']];
     if(isset($_GET['id'])){
-        $_SESSION['buycart'][$_GET['id']]=$_GET['stock'];
+        $_SESSION['buycart'][$_GET['id']]=$_GET['qt'];
     }
 
 
@@ -33,7 +33,7 @@ if(empty($_SESSION['buycart'])){
         <td>刪除</td>
     </tr>
         <?php
-        foreach($_SESSION['buycart'] as $id =>$qt):
+        foreach($_SESSION['buycart'] as $id => $qt):
             $item=$Item->find($id);
         ?>
     <tr class="pp">
@@ -43,7 +43,7 @@ if(empty($_SESSION['buycart'])){
         <td><?=$item['stock'];?></td>
         <td><?=$item['price'];?></td>
         <td><?=$item['price'] * $qt;?></td>
-        <td><a href="#" onclick="delItem(<?=$id;?>)"><img src="icon/0415.jpg" ></a></td>
+        <td class='ct'><a href="#" onclick="delItem(<?=$id;?>)"><img src="icon/0415.jpg" ></a></td>
     </tr>
     
     <?php

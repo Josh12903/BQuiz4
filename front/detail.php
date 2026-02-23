@@ -24,7 +24,7 @@ $row=$Item->find($_GET['id']);
 </div>
 <div class="all tt ct">
     購買數量
-    <input type="number" name="stock" id="stock" value="1">
+    <input type="number" name="stock" id="qt" value="1">
     <a href="#" onclick="buy()">
         <img src="icon/0402.jpg" alt="">
     </a>
@@ -32,6 +32,6 @@ $row=$Item->find($_GET['id']);
 <script>
     function buy(){
         let qt=$("#qt").val()
-        location.href=`?do=buycart&id=<?=$_GET['id'];?>&stock=${qt}`
+        location.href=`?do=buycart&id=<?=$_GET['id'];?>&qt=${qt}`
     }
 </script>
