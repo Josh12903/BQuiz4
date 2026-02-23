@@ -133,3 +133,4 @@ $Mem=new DB('members');
 $Admin=new DB('admin');
 $Type=new DB('types');
 $Item=new DB('items');
+$Order=new DB('orders');
