@@ -59,11 +59,11 @@
     <td><?=$item['name'];?></td>
     <td><?=$item['stock'];?></td>
     <td><?=($item['sh']==1)?'販售中':'已下架';?></td>
-    <td>
-        <button data-table="Item" data-id="<?=$item['id'];?>" onclick="location.href='?do=edit_item&id=<?=$item['id'];?>'">修改</button>
+    <td style='width:43%'>
+        <button data-table="Item" onclick="location.href='?do=edit_item&id=<?=$item['id'];?>'">修改</button>
         <button class="del-btn" data-table="Item" data-id="<?=$item['id'];?>">刪除</button>
-        <button class="on-btn" data-table="Item" data-sh="1" data-id="<?=$item['id'];?>">上架</button>
-        <button class="off-btn" data-table="Item" data-sh="0" data-id="<?=$item['id'];?>">下架</button>
+        <button class="on-btn" data-table="Item" data-sh='1' data-id="<?=$item['id'];?>">上架</button>
+        <button class="off-btn" data-table="Item" data-sh='0' data-id="<?=$item['id'];?>">下架</button>
     </td>
 </tr>
     <?php
@@ -87,10 +87,10 @@
         }
         console.log("準備傳送：", {name, big_id});
         $.post("api/save_type.php",{name,big_id},()=>{
-            console.log("伺服器回傳：", res);
-            location.reload()
+            location.reload();
         })
     }
+    // console.log("伺服器回傳：", res);
 function getBigs(){
     $.get('api/get_bigs.php',(bigs)=>{
         $("#bigs").html(bigs)
@@ -119,10 +119,10 @@ $(".on-btn,.off-btn").on('click',function(){
     let sh=$(this).data('sh');
     $.post("api/save_sh.php",{id,sh},()=>{
         switch(sh){
-            case '1':
+            case 1:
                 $(this).parent().prev().text('販售中')
             break;
-            case '0':
+            case 0:
                 $(this).parent().prev().text('已下架')
             break;
         }
