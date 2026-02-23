@@ -1,7 +1,8 @@
 <?php
     //工程 ； 實際
+    // $_SESSION['buycart'][]=[$_GET['stock'],$_GET['id']];
     if(isset($_GET['id'])){
-        $_SESSION['buycart'][]=[$_GET['stock'],$_GET['id']];
+        $_SESSION['buycart'][$_GET['id']]=$_GET['stock'];
     }
 
 
